@@ -4,6 +4,9 @@ class Demo1 extends AdventureScene {
     }
 
     onEnter() {
+        if(this.flags.length == 0){
+            for(let x = 0; x < 12; x++) this.flags.push(false);
+        }
 
         let clip = this.add.text(this.w * 0.3, this.w * 0.3, "📎 paperclip")
             .setFontSize(this.s * 2)
@@ -51,9 +54,9 @@ class Demo1 extends AdventureScene {
             })
             .on('pointerdown', () => {
                 if (this.hasItem("key")) {
-                    this.loseItem("key");
                     this.showMessage("*squeak*");
                     door.setText("🚪 unlocked door");
+                    this.flags[0] = true;
                     this.gotoScene('demo2');
                 }
             })

@@ -2,6 +2,8 @@ class AdventureScene extends Phaser.Scene {
 
     init(data) {
         this.inventory = data.inventory || [];
+        this.flags = data.flags || [];
+        console.log(this.flags);
     }
 
     constructor(key, name) {
@@ -12,32 +14,37 @@ class AdventureScene extends Phaser.Scene {
     create() {
         this.transitionDuration = 1000;
 
-        this.w = this.game.config.width;
-        this.h = this.game.config.height;
+        this.width = this.game.config.width;
+        this.height = this.game.config.height;
         this.s = this.game.config.width * 0.01;
 
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
-        this.add.rectangle(this.w * 0.75, 0, this.w * 0.25, this.h).setOrigin(0, 0).setFillStyle(0);
-        this.add.text(this.w * 0.75 + this.s, this.s)
+        //side box
+        this.add.rectangle(this.width * .75, 0, this.width * 0.25, this.height).setOrigin(0, 0).setFillStyle(0);
+        //scene name
+        this.add.text(this.width * 0.75 + this.s, this.s)
             .setText(this.name)
             .setStyle({ fontSize: `${3 * this.s}px` })
-            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+            .setWordWrapWidth(this.width * 0.25 - 2 * this.s);
         
-        this.messageBox = this.add.text(this.w * 0.75 + this.s, this.h * 0.33)
+        this.messageBox = this.add.text(this.width * 0.75 + this.s, this.height * 0.33)
             .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
-            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+            .setWordWrapWidth(this.width * 0.25 - 2 * this.s);
 
-        this.inventoryBanner = this.add.text(this.w * 0.75 + this.s, this.h * 0.66)
+        //the "Inventory" text
+        this.inventoryBanner = this.add.text(this.width * 0.75 + this.s, this.height * 0.66)
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setText("Inventory")
             .setAlpha(0);
 
+            
         this.inventoryTexts = [];
         this.updateInventory();
 
-        this.add.text(this.w-3*this.s, this.h-3*this.s, "📺")
+        //fullscreen button
+        this.add.text(this.width-3*this.s, this.height-3*this.s, "📺")
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setInteractive({useHandCursor: true})
             .on('pointerover', () => this.showMessage('Fullscreen?'))
@@ -49,10 +56,15 @@ class AdventureScene extends Phaser.Scene {
                 }
             });
 
+        if(this.getFlag(0)){
+            //display the thing that lets the player see what to do
+        }
+
         this.onEnter();
 
     }
 
+    //puts message in the box
     showMessage(message) {
         this.messageBox.setText(message);
         this.tweens.add({
@@ -63,13 +75,17 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    //gets inventory
     updateInventory() {
+        //show inventory if anything is in it
         if (this.inventory.length > 0) {
             this.tweens.add({
                 targets: this.inventoryBanner,
                 alpha: 1,
                 duration: this.transitionDuration
             });
+
+        //hide inventory if nothing is in it
         } else {
             this.tweens.add({
                 targets: this.inventoryBanner,
@@ -77,24 +93,41 @@ class AdventureScene extends Phaser.Scene {
                 duration: this.transitionDuration
             });
         }
+
+        //clear inventory texts
         if (this.inventoryTexts) {
             this.inventoryTexts.forEach((t) => t.destroy());
         }
+        //sets a new empty array
         this.inventoryTexts = [];
-        let h = this.h * 0.66 + 3 * this.s;
+        //position of text
+        let h = this.height * 0.66 + 3 * this.s;
+        //display each index of inventory
         this.inventory.forEach((e, i) => {
-            let text = this.add.text(this.w * 0.75 + 2 * this.s, h, e)
+            let text = this.add.text(this.width * 0.75 + 2 * this.s, h, e)
                 .setStyle({ fontSize: `${1.5 * this.s}px` })
-                .setWordWrapWidth(this.w * 0.75 + 4 * this.s);
+                .setWordWrapWidth(this.width * 0.75 + 4 * this.s);
             h += text.height + this.s;
             this.inventoryTexts.push(text);
         });
     }
 
+    //checks if item is held
     hasItem(item) {
         return this.inventory.includes(item);
     }
 
+    //checks if a certain flag has been triggered
+    getFlag(index){
+        return(this.flags[index]);
+    }
+
+    //sets a flag to true, no flags should be able to be set to false
+    setFlag(index){
+        this.flags[index] = true;
+    }
+
+    //gains an item when called
     gainItem(item) {
         if (this.inventory.includes(item)) {
             console.warn('gaining item already held:', item);
@@ -115,6 +148,7 @@ class AdventureScene extends Phaser.Scene {
         }
     }
 
+    //removes an item when called
     loseItem(item) {
         if (!this.inventory.includes(item)) {
             console.warn('losing item not held:', item);
@@ -137,13 +171,15 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    //go to scene
     gotoScene(key) {
         this.cameras.main.fade(this.transitionDuration, 0, 0, 0);
         this.time.delayedCall(this.transitionDuration, () => {
-            this.scene.start(key, { inventory: this.inventory });
+            this.scene.start(key, { inventory: this.inventory, flags: this.flags});
         });
     }
 
+    //function that runs when entering a scene, create objects and such in here
     onEnter() {
         console.warn('This AdventureScene did not implement onEnter():', this.constructor.name);
     }

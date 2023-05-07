@@ -1,0 +1,71 @@
+{
+    "dialogue": {
+        "cryo": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+        "hall": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+        "hydro": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+        "cargo": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+        "bridge": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+        "engine": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+        "life support": {
+            "character":"",
+            "text":     "",
+            "links":    [],
+            "linkText": {}
+        },
+
+        "ai1": {
+            "character": "AI",
+            "text": "What would you like to do?",
+            "links": [
+                "ai2a",
+                "ai3a"
+            ],
+            "linkText": {
+                "ai2a": "System status",
+                "ai3a": "What's up?"
+            }
+        },
+        "ai2a": {
+            "character": "AI",
+            "text": "I needed to put text here",
+            "links": [
+                "ai4a",
+                "ai5a"
+            ],
+            "linkText": {
+                "ai4a": "text",
+                "ai5a": "text"
+            }
+        }
+    }
+}
