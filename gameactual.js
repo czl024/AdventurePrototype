@@ -29,6 +29,9 @@ meant to show one-time description of room
 17) bridge
 18) engine
 19) life support
+----------------------------
+Flags I put in later after solidifying the above
+20) talked to the ai
  */
 
 class CryoChamber extends AdventureScene{
@@ -38,7 +41,7 @@ class CryoChamber extends AdventureScene{
         //initialize on game startup
         if(this.flags.length == 0){
             //initialize flags
-            for(let x = 0; x < 20; x++) this.flags.push(false);
+            for(let x = 0; x < 21; x++) this.flags.push(false);
             //show the cryo intro text
         }
 
@@ -229,6 +232,15 @@ class Bridge extends AdventureScene{
         hallDoor.on('pointerdown', () =>{
             if(!this.dialogueHappening){
                 this.gotoScene('hall');
+            }
+        });
+
+        let shipAI = this.add.circle(this.width / 2, this.height / 2, 100, '#6dd37f');
+        shipAI.setInteractive();
+        shipAI.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                if(!this.getFlag(20)) this.startDialogue('aiintro0');
+                else this.startDialogue('aiintrog');
             }
         });
 

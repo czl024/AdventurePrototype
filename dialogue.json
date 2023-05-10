@@ -87,7 +87,7 @@
                 "ai4a": "Run an integrity check.",
                 "aiexit": "That's all."
             },
-            "flags": []
+            "flags": [20]
         },
         "aiintrog": {
             "character": "Ship AI",
@@ -126,7 +126,7 @@
                 "ai2b"
             ],
             "linkText": {
-                "ai4a": "So...how long?"
+                "ai2b": "So...how long?"
             },
             "flags": []
         },
@@ -137,7 +137,7 @@
                 "aiintrog"
             ],
             "linkText": {
-                "ai4a": "Yuh huh, great."
+                "aiintrog": "Yuh huh, great."
             },
             "flags": []
         },
@@ -159,7 +159,7 @@
                 "aiintrog"
             ],
             "linkText": {
-                "ai3b": "Someone got fired for sure."
+                "aiintrog": "Someone got fired for sure."
             },
             "flags": [8]
         },
@@ -181,7 +181,7 @@
                 "aiintrog"
             ],
             "linkText": {
-                "ai4b": "Oh, cool."
+                "aiintrog": "Oh, cool."
             },
             "flags": []
         },
