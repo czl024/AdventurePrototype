@@ -375,7 +375,7 @@ class Hydroponics extends AdventureScene{
 
     onEnter(){
         //hall door
-        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        let hallDoor = this.add.rectangle(7 * this.width / 8, this.height / 2, 250, 400, '#101010');
         hallDoor.setInteractive();
         hallDoor.on('pointerdown', () =>{
             if(!this.dialogueHappening){
@@ -394,6 +394,83 @@ class Hydroponics extends AdventureScene{
             }
         });
         hallDoor.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //water filter
+        let filter = this.add.rectangle(this.width / 2, this.height / 3, 200, 500, '#101010');
+        filter.setInteractive()
+        filter.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                if(this.hasItem("Ladder")){
+                    this.startDialogue("filteryes");
+                    this.loseItem("Ladder");
+                }else if(!this.getFlag(3)) this.startDialogue("filterno");
+                
+            }
+        });
+        filter.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.waterFilter.text);
+                this.time.delayedCall(this.mouseover.waterFilter.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.waterFilter.longtext);
+                });
+            }
+        });
+        filter.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //crop module
+        let crops = this.add.rectangle(this.width / 5, this.height / 2, 500, 500, '#101010');
+        crops.setInteractive()
+        crops.on('pointerdown', () =>{
+            if(!this.dialogueHappening && !this.getFlag(4)){
+                this.startDialogue("cropmodule");
+            }
+        });
+        crops.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.cropModule.text);
+                this.time.delayedCall(this.mouseover.cropModule.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.cropModule.longtext);
+                });
+            }
+        });
+        crops.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //meat synthesizer
+        let meats = this.add.rectangle(this.width / 3, this.height / 2, 300, 200, '#101010');
+        meats.setInteractive()
+        meats.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                if(!this.getFlag(9)) this.startDialogue("meatmodulehungry");
+                else this.startDialogue("meatmoduleno");
+            }
+        });
+        meats.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.meatModule.text);
+                this.time.delayedCall(this.mouseover.meatModule.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.meatModule.longtext);
+                });
+            }
+        });
+        meats.on('pointerout', () => {
             this.overactive = false;
             this.descText.setText("");
         });
@@ -435,6 +512,38 @@ class CargoBay extends AdventureScene{
             this.overactive = false;
             this.descText.setText("");
         });
+
+
+
+        //ladder
+        if(!this.hasItem("Ladder")){
+            let ladder = this.add.rectangle(this.width / 2, 3 * this.height / 4, 100, 800, '#101010');
+            ladder.setInteractive();
+            ladder.setAngle(10);
+            ladder.on('pointerdown', () =>{
+                if(!this.dialogueHappening){
+                    if(!this.getFlag(3)){
+                        this.gainItem("Ladder");
+                        ladder.destroy();
+                        this.descText.setText("");
+                        this.overactive = false;
+                    }else this.descText.setText("You don't need a ladder anymore");
+                }
+            });
+            ladder.on('pointerover', () => {
+                if(!this.dialogueHappening){
+                    this.overactive = true;
+                    this.descText.setText(this.mouseover.ladder.text);
+                    this.time.delayedCall(this.mouseover.ladder.text.length * 100, () => {
+                        if(this.overactive) this.descText.setText(this.mouseover.ladder.longtext);
+                    });
+                }
+            });
+            ladder.on('pointerout', () => {
+                this.overactive = false;
+                this.descText.setText("");
+            });
+        }
 
 
 
