@@ -1,0 +1,64 @@
+{
+    "mouseover": {
+        "paper": {
+            "text": "Paper stuck on the wall.",
+            "longtext": "You wrote this down before coming aboard and always stuck it on the wall."
+        },
+        "cryoChamber": {
+            "text": "A big, sturdy cryo chamber.",
+            "longtext": "You definitely can't open this."
+        },
+        "cropModule": {
+            "text": "The Crop Module",
+            "longtext": "Inside this mysterious box is a lot of delicious plants, supposedly."
+        },
+        "meatModule": {
+            "text": "The Meat Module",
+            "longtext": "Inside this is synthetic meat, and whatever technological solution for cooking said meat."
+        },
+        "waterFilter": {
+            "text": "The Water Filter",
+            "longtext": "Does exactly what you think it does."
+        },
+        "rationcrate": {
+            "text": "A wooden crate full of rations.",
+            "longtext": "Not sure why this is the only wood thing in here."
+        },
+        "bigdoor": {
+            "text": "The Cargo Bay Door",
+            "longtext": "The thing separating you and the ever-expanding emptiness of oblivion."
+        },
+        "ladder": {
+            "text": "A Ladder",
+            "longtext": "Simple problems require simple solutions."
+        },
+        "doorpanel": {
+            "text": "The Cargo Bay Door Panel",
+            "longtext": "Even if you wanted to, you don't have access to fiddle with this thing."
+        },
+        "crates": {
+            "text": "Crates and containers.",
+            "longtext": "Boxes filled with god-knows-what."
+        },
+        "gasthingy": {
+            "text": "A Gas Purification Module",
+            "longtext": "This thing is how you can breathe, by the way."
+        },
+        "lifesterminal": {
+            "text": "A terminal",
+            "longtext": "Just a big computer, really."
+        },
+        "serviceaccess": {
+            "text": "Service access",
+            "longtext": "A door to the inner workings of the ship, nothing but wires, tubes, and tubes of wires."
+        },
+        "engine": {
+            "text": "A giant starship reactor",
+            "longtext": "You heard only one was necessary but enough of the passengers complained about it so they put two on."
+        },
+        "enginesterminal": {
+            "text": "A terminal",
+            "longtext": "A computer that makes the engine go vroom vroom."
+        }
+    }
+}

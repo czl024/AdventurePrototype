@@ -1,6 +1,7 @@
 class AdventureScene extends Phaser.Scene {
     preload(){
         this.load.json('dialogue', './dialogue.json');
+        this.load.json('mouseover', './mouseover.json');
     }
 
     init(data) {
@@ -16,6 +17,7 @@ class AdventureScene extends Phaser.Scene {
 
     create() {
         this.dialogue = this.cache.json.get("dialogue").dialogue;
+        this.mouseover = this.cache.json.get("mouseover").mouseover;
         console.log(this.flags);
 
         this.transitionDuration = 1000;
@@ -28,7 +30,7 @@ class AdventureScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
-        //the "Inventory" text, to reimplement later
+        //the "Inventory" text, to reimplement later or never
         this.inventoryBanner = this.add.text(this.width * 0.75 + this.s, this.height * 0.66)
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setText("Inventory")
@@ -36,20 +38,21 @@ class AdventureScene extends Phaser.Scene {
         this.inventoryTexts = [];
         this.updateInventory();
 
-        this.onEnter();
-
-    }
-
-    //puts message in the box
-    showMessage(message) {
-        this.messageBox.setText(message);
-        this.tweens.add({
-            targets: this.messageBox,
-            alpha: { from: 1, to: 0 },
-            easing: 'Quintic.in',
-            duration: 4 * this.transitionDuration
+        this.descText = this.add.text(this.width/2, this.height/2, "", {
+            fontFamily: 'Helvetica',
+            fontSize: 40,
+            alpha: .6,
+            color: '#f0f0f0',
+            wordWrap: {width: 400, useAdvancedWrap: true},
+		    align: 'center'
         });
+        this.descText.setOrigin(.5);
+        this.descText.setDepth(50);
+
+        this.onEnter();
     }
+
+
 
     //gets inventory
     updateInventory() {
@@ -161,6 +164,9 @@ class AdventureScene extends Phaser.Scene {
     }
 
     //start a dialogue with a given node, nodes in "dialogue.json"
+    //yes i could probably break this function up
+    //no im not going to
+    //yes its because this assignment is a week late
     startDialogue(dialogueNode){
         let textX = 0;
         let textY = 2 * this.height / 3;

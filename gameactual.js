@@ -8,7 +8,7 @@ Mandatory Flags
 3)  water filters cleaned
 4)  fertilizer added
 5)  engines calibrated
-6)  course corrected
+6)  course corrected //basically unused
 7)  ai integrity confirmed
 -----------------------------
 Secret Ending PreReq Flags
@@ -51,13 +51,28 @@ class CryoChamber extends AdventureScene{
             let paper = this.add.rectangle(this.width / 2, this.height / 2, 40, 60, '#efeed3');
             paper.setAngle(20);
             paper.setInteractive();
+            paper.on('pointerover', () => {
+                if(!this.dialogueHappening){
+                    this.overactive = true;
+                    this.descText.setText(this.mouseover.paper.text);
+                    this.time.delayedCall(this.mouseover.paper.text.length * 100, () => {
+                        if(this.overactive) this.descText.setText(this.mouseover.paper.longtext);
+                    });
+                }
+            });
+            paper.on('pointerout', () => {
+                this.overactive = false;
+                this.descText.setText("");
+            });
             paper.on('pointerdown', () => {
                 //dont do anything if dialogue is happening
                 if(!this.dialogueHappening){
                     paper.destroy();
                     this.setFlag(0);
+                    this.descText.setText("");
+                    this.overactive = false;
                 }
-            })
+            });
             //add the ui telling the player to click to pick it up
         }
 

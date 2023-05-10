@@ -172,7 +172,7 @@
             "linkText": {
                 "ai4b": "Meaning...?"
             },
-            "flags": [7]
+            "flags": [6, 7]
         },
         "ai4b": {
             "character": "Ship AI",
@@ -191,6 +191,143 @@
             "links": [],
             "linkText": {},
             "flags": []
+        },
+        "filterno": {
+            "character": "",
+            "text": ["The actual filter part of the filter is too high off the ground for you to reach.", "Someone actually had the balls to introduce artificial gravity AND make it so things are high off the ground."],
+            "links": [],
+            "linkText": {},
+            "flags": []
+        },
+        "filteryes": {
+            "character": "",
+            "text": ["Inspecting the filter, you find...", "A piece of loose paint.", "You toss the paint chip behind the water canisters.", "The filter is otherwise clean, though you'd be more surprised if it weren't."],
+            "links": [],
+            "linkText": {},
+            "flags": [3]
+        },
+        "cropmodule": {
+            "character": "",
+            "text": ["You press a button that has the word \"FERTILIZER\" on it.", "A light turns from red to green.", "Mission accomplished."],
+            "links": [],
+            "linkText": {},
+            "flags": [4]
+        },
+        "meatmodulehungry": {
+            "character": "",
+            "text": ["You were always told not to eat from the meat module, even though you were never given a reason beyond \"just don't\".", "You really couldn't be bothered to eat whatever nutrient paste the engineers threw together to make sure you don't die of starvation.", "Would you look at that, a grilled steak, seared to the perfect juiciness. Rich in flavor, seasoned by whatever's being grown in the crop module.", "You somehow don't think this is something for any plebian colonist. Earth probably doesn't have stuff like this anymore."],
+            "links": [],
+            "linkText": {},
+            "flags": [2, 9]
+        },
+        "meatmoduleno": {
+            "character": "",
+            "text": ["As good as that steak was, you really can't eat another bite."],
+            "links": [],
+            "linkText": {},
+            "flags": []
+        },
+        "rationcrate": {
+            "character": "",
+            "text": ["This crate has got a plastic package with the label \"CARETAKER\" on it. That's you, by the way.", "Inside it is, well...", "A slightly soggy ham sandwich...", "a bag of dried fruit...", "and a juice box.", "Wow, they thought of everything."],
+            "links": [
+                "rationcratea",
+                "rationcrateb"
+            ],
+            "linkText": {
+                "rationcratea": "Oh, wow, yummy yummy for my tummy, I guess.",
+                "rationcrateb": "There's gotta be something better somewhere."
+            },
+            "flags": []
+        },
+        "rationcratea": {
+            "character": "",
+            "text": ["Yeeep, yummy yummy indeed.", "You eat your bountiful god-given feast.", "Not horrible, but you've already forgotten what everything tasted like.", "But hey, you ate. Self care and all, right?"],
+            "links": [],
+            "linkText": {},
+            "flags": [2]
+        },
+        "rationcrateb": {
+            "character": "",
+            "text": ["Yea maybe if your cryo chamber breaks you can ration this out to live out the rest of your life stuck on this ship, anyways. Better start saving now, or something."],
+            "links": [],
+            "linkText": {},
+            "flags": []
+        },
+        "rationcrateno": {
+            "character": "",
+            "text": ["You've had enough of this ration crate."],
+            "links": [],
+            "linkText": {},
+            "flags": []
+        },
+        "crateexcamine": {
+            "character": "",
+            "text": ["Perhaps a bit out of boredom, you decide to rummage through the crates.", "Oh, this box has an honest to god grandfather clock.", "This one has one of them self-driving fancy flying cars that's a bigger threat to rich people than the people they underpay.", "This box has...,", "eugh...nevermind.", "These \"survival items\" are kinda questionable.", "After searching for a bit, you find no actual equipment that would be necessary to survive on an alien world."],
+            "links": [],
+            "linkText": {},
+            "flags": [10]
+        },
+        "lifesterminala": {
+            "character": "",
+            "text": ["There's not much you can do here except read the cryo manifest."],
+            "links": [
+                "lifesterminala1",
+                "lifesterminalano"
+            ],
+            "linkText": {
+                "lifesterminala1": "Sure, why not.",
+                "lifesterminalano": "Not my business, really."
+            },
+            "flags": []
+        },
+        "lifesterminala1": {
+            "character": "",
+            "text": ["Alrighty then, let's see...", "Alfred Schumacher, age 50, Chief Executive...", "Hunter Jones, age 54, Senior Engineer...wait, isn't this that guy who tried to ratio you because you thought self driving cars were bad?", "Martin Johnson, age 64, Chief Executive...", "Candy Valentine, age 22, model...", "Mm, you don't want to read more."],
+            "links": [],
+            "linkText": {},
+            "flags": [11]
+        },
+        "lifesterminalano": {
+            "character": "",
+            "text": ["You've got more important and marginally more interesting things to do than read about people stuck in ice."],
+            "links": [],
+            "linkText": {},
+            "flags": []
+        },
+        "lifesterminalaspecial": {
+            "character": "",
+            "text": ["These \"colonists\" have fooled you into coming on some stupid rich person escapade where you're not even treated like one of them despite this being a one way trip.", "You signed up for this just so your family, who you havent seen in about 70 years since you've been stuck in ice for a while, could live the rest of their lives with a roof over their head and food in their bellies.", "You sold your meagre existence to these people.", "And you're the one at the cryo controls.", "The big sturdy cryo chambers were meant for single-use, so they wouldn't be able to go back in."],
+            "links": [
+                "lifesterminalaspeciala",
+                "lifesterminalaspecialb"
+            ],
+            "linkText": {
+                "lifesterminalaspeciala": "Then let them bathe in their riches for the rest of their lives.",
+                "lifesterminalaspecialb": "Maybe I should just see this through, they'll share."
+            },
+            "flags": []
+        },
+        "lifesterminalaspeciala": {
+            "character": "",
+            "text": ["You trigger the cryo release sequence for the others. Entering and exiting cryostasis takes a long while so you can probably get back in yours, ready as always for your return, and be long frozen before anyone even wakes up."],
+            "links": [],
+            "linkText": {},
+            "flags": [12]
+        },
+        "lifesterminalaspecialb": {
+            "character": "",
+            "text": ["They'll let you live in luxury for once. They've got more than enough to share. They owe it to you, their literal caretaker for this journey, for this."],
+            "links": [],
+            "linkText": {},
+            "flags": []
+        },
+        "engineterminal": {
+            "character": "",
+            "text": ["With a few key presses, you've calibrated the engine output, which is to say, nothing significant.", "You already had woken up to find that this calibration actually did something, so better safe than sorry."],
+            "links": [],
+            "linkText": {},
+            "flags": [5]
         }
     }
 }
