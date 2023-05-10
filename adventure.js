@@ -1,9 +1,12 @@
 class AdventureScene extends Phaser.Scene {
+    preload(){
+        this.load.json('dialogue', './dialogue.json');
+    }
 
     init(data) {
         this.inventory = data.inventory || [];
         this.flags = data.flags || [];
-        console.log(this.flags);
+        this.dialogue;
     }
 
     constructor(key, name) {
@@ -12,7 +15,11 @@ class AdventureScene extends Phaser.Scene {
     }
 
     create() {
+        this.dialogue = this.cache.json.get("dialogue");
+        console.log(this.dialogue);
+
         this.transitionDuration = 1000;
+        this.dialogueHappening = false;
 
         this.width = this.game.config.width;
         this.height = this.game.config.height;
@@ -55,10 +62,6 @@ class AdventureScene extends Phaser.Scene {
                     this.scale.startFullscreen();
                 }
             });
-
-        if(this.getFlag(0)){
-            //display the thing that lets the player see what to do
-        }
 
         this.onEnter();
 
@@ -175,12 +178,27 @@ class AdventureScene extends Phaser.Scene {
     gotoScene(key) {
         this.cameras.main.fade(this.transitionDuration, 0, 0, 0);
         this.time.delayedCall(this.transitionDuration, () => {
-            this.scene.start(key, { inventory: this.inventory, flags: this.flags});
+            this.scene.start(key, { inventory: this.inventory, flags: this.flags, dialogue: this.dialogue});
         });
     }
 
     //function that runs when entering a scene, create objects and such in here
     onEnter() {
         console.warn('This AdventureScene did not implement onEnter():', this.constructor.name);
+    }
+
+    //start a dialogue with a given node, nodes in "dialogue.json"
+    startDialogue(dialogueNode){
+        this.dialogueHappening = true;
+        //load the appropriate node
+        //render the dialogue box
+        //print the name
+        //print the text
+        //on click
+            //if no dialogue after current
+                //if there are links
+                //else (no links)
+                    //move/delete the dialogue box
+                    this.dialogueHappening = false;
     }
 }

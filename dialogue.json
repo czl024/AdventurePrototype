@@ -1,51 +1,81 @@
 {
     "dialogue": {
+        "test0": {
+            "character":"The Creator",
+            "text":     ["this is a dialogue box", "this is the 2nd part of the first dialogue"],
+            "links":    ["test1"],
+            "linkText": {"test1" : "this is the link to test1"}
+        },
+        "test1": {
+            "character":"",
+            "text":     ["this is the 2nd dialogue node"],
+            "links":    ["test2"],
+            "linkText": {"test2" : "this is the link to test2"}
+        },
+        "test2": {
+            "character":"The Creator",
+            "text":     ["this is the third dialogue box", "this is the 2nd part of the third dialogue"],
+            "links":    [],
+            "linkText": {}
+        },
         "cryo": {
             "character":"",
-            "text":     "",
+            "text":     ["As you awaken from your dreamless slumber, an overwhelming chill invades every pore of your body as your body regains its functions.", "The chill is swiftly brushed away with a wave of lukewarmth, though the last vestiges of cold cling dearly to your bones. As you quickly regain your senses, you think to yourself...", "Ah, time for this shit again. Now where's that paper?", "The room you're in has many beefy looking cryo chambers. Yours is noticably less robust."],
             "links":    [],
             "linkText": {}
         },
         "hall": {
             "character":"",
-            "text":     "",
+            "text":     ["This hallway is sleek and minimalist. There's so little personality in this room that that's its primary feature.", "The doors to the cryo room, hydroponics room, and cargo bay are far more inviting than the doors to the other rooms.", "\"Staff Only\", that's you, by the way, and only you."],
             "links":    [],
             "linkText": {}
         },
         "hydro": {
             "character":"",
-            "text":     "",
+            "text":     ["The hydroponics room gently whirrs and purrs as the machinery works to grow crops and synthetic meats for the passengers on board for when this journey is over.", "You remember the engineers in charge of making this ship being quite particular about the specs of the machinery in here, for whatever reason."],
             "links":    [],
             "linkText": {}
         },
         "cargo": {
             "character":"",
-            "text":     "",
+            "text":     ["The sizable cargo bay is chock full of crates and containers containing all the bits and doodads required for starting whatever colony this ship is meant to start.", "Many robots are shutoff and strapped to their stations, locked behind keys and access codes you were never meant to have."],
             "links":    [],
             "linkText": {}
         },
         "bridge": {
             "character":"",
-            "text":     "",
+            "text":     ["This grand nervous center of this ship that supposedly is the culmination of a dozen millenia of human ingenuity is outwardly crude. Simply a big screen and not even a holographic interface to interact with the ship's administrative AI.", "Having sensed your presense, and probably also because you were scheduled to wake up around this time, the AI terminal gently glows."],
             "links":    [],
             "linkText": {}
         },
         "engine": {
             "character":"",
-            "text":     "",
+            "text":     ["The engine room is shockingly quiet for being able to propel this bajillion ton monstrosity across space at practically-as-fast-as-light speeds.", "A gentle hum of its reactors, powering the ship and all the cryo chambers, is mostly all that can be heard."],
             "links":    [],
             "linkText": {}
         },
         "life support": {
             "character":"",
-            "text":     "",
+            "text":     ["Life support, the room with all the essential functions that people don't need to know about.", "Air recycling, molecular processors, things that gross people out if you talk about it for any length of time.", "Gross things that you need to clean up."],
             "links":    [],
             "linkText": {}
         },
 
-        "ai1": {
+        "ai0a": {
             "character": "AI",
-            "text": "What would you like to do?",
+            "text": "Good morning, [CARETAKER]. As a reminder, this is the [SEVENTH] of [TWENTY] maintenance cycles. Keep up the good work. How may I assist you today?",
+            "links": [
+                "ai2a",
+                "ai3a"
+            ],
+            "linkText": {
+                "ai2a": "System status",
+                "ai3a": "What's up?"
+            }
+        },
+        "ai0b": {
+            "character": "AI",
+            "text": "How else can I help you?",
             "links": [
                 "ai2a",
                 "ai3a"
