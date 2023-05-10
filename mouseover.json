@@ -59,6 +59,42 @@
         "enginesterminal": {
             "text": "A terminal",
             "longtext": "A computer that makes the engine go vroom vroom."
+        },
+        "hallDoor": {
+            "text": "To Hallway",
+            "longtext": "To Hallway, the central access point to the rest of the ship."
+        },
+        "cryoDoor": {
+            "text": "To Cryo Room",
+            "longtext": "To Cryo Room, the place where you go to get frozen for years at a time."
+        },
+        "hydroDoor": {
+            "text": "To Hydroponics",
+            "longtext": "To Hydroponics, where food is made and water made drinkable."
+        },
+        "cargoDoor": {
+            "text": "To Cargo Bay",
+            "longtext": "To Cargo Bay, the place with the boxes and stuff."
+        },
+        "bridgeDoor": {
+            "text": "To Bridge",
+            "longtext": "To Bridge, now you're a real starship captain."
+        },
+        "engineDoor": {
+            "text": "To Engine Room",
+            "longtext": "To Engine Room, this one's pretty self explanatory."
+        },
+        "lifeDoor": {
+            "text": "To Life Support",
+            "longtext": "To Life Support, where gas is made breathable and cryo chambers are maintained."
+        },
+        "playerCryono": {
+            "text": "Unfortunately, you still have things to do.",
+            "longtext": "You can stop clicking this, now."
+        },
+        "playerCryoyes": {
+            "text": "Some much needed getting frozen for a job mediocre-ly done.",
+            "longtext": "I sure can't wait for the next time I gotta get thawed out."
         }
     }
 }
