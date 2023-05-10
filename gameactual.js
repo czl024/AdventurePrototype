@@ -547,6 +547,97 @@ class CargoBay extends AdventureScene{
 
 
 
+        //ration crate
+        let ratcrate = this.add.rectangle(this.width / 5, 4 * this.height / 5, 300, 300, '#101010');
+        ratcrate.setInteractive();
+        ratcrate.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                if(!this.getFlag(2)){
+                    this.descText.setText("");
+                    this.overactive = false;
+                    this.startDialogue("rationcrate");
+                }else this.startDialogue("rationcrateno");
+            }
+        });
+        ratcrate.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.rationcrate.text);
+                this.time.delayedCall(this.mouseover.rationcrate.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.rationcrate.longtext);
+                });
+            }
+        });
+        ratcrate.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //crates
+        let cargo = this.add.rectangle(this.width / 7, 1 * this.height / 4, 400, 400, '#101010');
+        cargo.setInteractive();
+        cargo.on('pointerdown', () =>{
+            if(!this.dialogueHappening && !this.getFlag(3)){
+                this.descText.setText("");
+                this.overactive = false;
+                this.startDialogue("crateexamine");
+            }
+        });
+        cargo.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.crates.text);
+                this.time.delayedCall(this.mouseover.crates.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.crates.longtext);
+                });
+            }
+        });
+        cargo.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //cargo bay door
+        let bigdoor = this.add.rectangle(this.width / 2, this.height / 3, 900, 600, '#101010');
+        bigdoor.setInteractive();
+        bigdoor.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.bigdoor.text);
+                this.time.delayedCall(this.mouseover.bigdoor.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.bigdoor.longtext);
+                });
+            }
+        });
+        bigdoor.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+        //door panel
+        let doorpanel = this.add.rectangle(9 * this.width / 10, this.height / 2, 50, 80, '#101010');
+        doorpanel.setInteractive();
+        doorpanel.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.doorpanel.text);
+                this.time.delayedCall(this.mouseover.doorpanel.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.doorpanel.longtext);
+                });
+            }
+        });
+        doorpanel.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
         if(!this.getFlag(16)){
             this.startDialogue("cargo");
         }
@@ -560,7 +651,7 @@ class LifeSupport extends AdventureScene{
 
     onEnter(){
         //hall door
-        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        let hallDoor = this.add.rectangle(2 * this.width / 3, this.height / 2, 250, 400, '#101010');
         hallDoor.setInteractive();
         hallDoor.on('pointerdown', () =>{
             if(!this.dialogueHappening){
@@ -585,6 +676,78 @@ class LifeSupport extends AdventureScene{
 
 
 
+        //terminal
+        let term = this.add.rectangle(6 * this.width / 7, this.height / 2, 400, 300, '#101010');
+        term.setInteractive();
+        term.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                let check = true;
+                for(let x = 8; x <= 11; x++) if(!this.getFlag(x)) check = false;
+                if(!this.getFlag(11)){
+                    this.descText.setText("");
+                    this.overactive = false;
+                    this.startDialogue("lifesterminala");
+                }else if (check){
+                    this.descText.setText("");
+                    this.overactive = false;
+                    this.startDialogue("lifesterminalaspecial");
+                }
+            }
+        });
+        term.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.lifesterminal.text);
+                this.time.delayedCall(this.mouseover.lifesterminal.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.lifesterminal.longtext);
+                });
+            }
+        });
+        term.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //service access
+        let serviceaccess = this.add.rectangle(this.width / 3, this.height / 2, 200, 350, '#101010');
+        serviceaccess.setInteractive();
+        serviceaccess.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.serviceaccess.text);
+                this.time.delayedCall(this.mouseover.serviceaccess.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.serviceaccess.longtext);
+                });
+            }
+        });
+        serviceaccess.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //gas purifier
+        let gasthingy = this.add.rectangle(this.width / 8, this.height / 2, 300, 600, '#101010');
+        gasthingy.setInteractive();
+        gasthingy.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.gasthingy.text);
+                this.time.delayedCall(this.mouseover.gasthingy.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.gasthingy.longtext);
+                });
+            }
+        });
+        gasthingy.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
         if(!this.getFlag(19)){
             this.startDialogue("life support");
         }
@@ -598,7 +761,7 @@ class EngineRoom extends AdventureScene{
 
     onEnter(){
         //hall door
-        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        let hallDoor = this.add.rectangle(3 * this.width / 5, this.height / 2, 250, 400, '#101010');
         hallDoor.setInteractive();
         hallDoor.on('pointerdown', () =>{
             if(!this.dialogueHappening){
@@ -617,6 +780,70 @@ class EngineRoom extends AdventureScene{
             }
         });
         hallDoor.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //engine 1
+        let eng1 = this.add.rectangle(this.width / 10, this.height / 2, 500, 700, '#101010');
+        eng1.setInteractive();
+        eng1.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.engine.text);
+                this.time.delayedCall(this.mouseover.engine.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.engine.longtext);
+                });
+            }
+        });
+        eng1.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //engine 2
+        let eng2 = this.add.rectangle(7 * this.width / 8, this.height / 2, 500, 700, '#101010');
+        eng2.setInteractive();
+        eng2.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.engine.text);
+                this.time.delayedCall(this.mouseover.engine.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.engine.longtext);
+                });
+            }
+        });
+        eng2.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //engine terminal
+        let term = this.add.rectangle(3 * this.width / 7, this.height / 2, 400, 200, '#101010');
+        term.setInteractive();
+        term.on('pointerdown', () =>{
+            if(!this.dialogueHappening && !this.getFlag(5)){
+                this.descText.setText("");
+                this.overactive = false;
+                this.startDialogue("engineterminal");
+            }
+        });
+        term.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.enginesterminal.text);
+                this.time.delayedCall(this.mouseover.enginesterminal.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.enginesterminal.longtext);
+                });
+            }
+        });
+        term.on('pointerout', () => {
             this.overactive = false;
             this.descText.setText("");
         });
@@ -661,14 +888,136 @@ class Bridge extends AdventureScene{
 
 
 
-        let shipAI = this.add.circle(this.width / 2, this.height / 2, 100, '#6dd37f');
+        //ship ai
+        let shipAI = this.add.circle(this.width / 2, 4 * this.height / 5, 100, '#6dd37f');
         shipAI.setInteractive();
         shipAI.on('pointerdown', () =>{
             if(!this.dialogueHappening){
+                this.descText.setText("");
+                this.overactive = false;
                 if(!this.getFlag(20)) this.startDialogue('aiintro0');
                 else this.startDialogue('aiintrog');
             }
         });
+        shipAI.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                this.descText.setText(this.mouseover.shipai.text);
+                this.time.delayedCall(this.mouseover.shipai.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.shipai.longtext);
+                });
+            }
+        });
+        shipAI.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //hydro status screen
+        let hstat = this.add.rectangle(this.width / 4, this.height / 5, 400, 200, '#101010');
+        hstat.setInteractive();
+        hstat.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                if(this.getFlag(3) && this.getFlag(4)){
+                    this.descText.setText(this.mouseover.hstatyes.text);
+                    this.time.delayedCall(this.mouseover.hstatyes.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.hstatyes.longtext);
+                    });
+                }else{
+                    this.descText.setText(this.mouseover.hstatno.text);
+                    this.time.delayedCall(this.mouseover.hstatno.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.hstatno.longtext);
+                    });
+                }
+            }
+        });
+        hstat.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //cryo status screen
+        let cstat = this.add.rectangle(this.width / 4, 2 * this.height / 5, 400, 200, '#101010');
+        cstat.setInteractive();
+        cstat.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                if(!this.getFlag(12)){
+                    this.descText.setText(this.mouseover.cstatyes.text);
+                    this.time.delayedCall(this.mouseover.cstatyes.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.cstatyes.longtext);
+                    });
+                }else{
+                    this.descText.setText(this.mouseover.cstatno.text);
+                    this.time.delayedCall(this.mouseover.cstatno.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.cstatno.longtext);
+                    });
+                }
+            }
+        });
+        cstat.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //engine status screen
+        let estat = this.add.rectangle(this.width / 4, 3 * this.height / 5, 400, 200, '#101010');
+        estat.setInteractive();
+        estat.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                if(this.getFlag(5)){
+                    this.descText.setText(this.mouseover.estatyes.text);
+                    this.time.delayedCall(this.mouseover.estatyes.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.estatyes.longtext);
+                    });
+                }else{
+                    this.descText.setText(this.mouseover.estatno.text);
+                    this.time.delayedCall(this.mouseover.estatno.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.estatno.longtext);
+                    });
+                }
+            }
+        });
+        estat.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
+
+        //ai status screen
+        let astat = this.add.rectangle(this.width / 4, 4 * this.height / 5, 400, 200, '#101010');
+        astat.setInteractive();
+        astat.on('pointerover', () => {
+            if(!this.dialogueHappening){
+                this.overactive = true;
+                if(this.getFlag(7)){
+                    this.descText.setText(this.mouseover.astatyes.text);
+                    this.time.delayedCall(this.mouseover.astatyes.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.astatyes.longtext);
+                    });
+                }else{
+                    this.descText.setText(this.mouseover.astatno.text);
+                    this.time.delayedCall(this.mouseover.astatno.text.length * 100, () => {
+                    if(this.overactive) this.descText.setText(this.mouseover.astatno.longtext);
+                    });
+                }
+            }
+        });
+        astat.on('pointerout', () => {
+            this.overactive = false;
+            this.descText.setText("");
+        });
+
+
 
         if(!this.getFlag(17)){
             this.startDialogue("bridge");

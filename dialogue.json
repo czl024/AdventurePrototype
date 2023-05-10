@@ -44,7 +44,7 @@
         },
         "cargo": {
             "character":"",
-            "text":     ["The sizable cargo bay is chock full of crates and containers containing all the bits and doodads required for starting whatever colony this ship is meant to start.", "Many robots are shutoff and strapped to their stations, locked behind keys and access codes you were never meant to have."],
+            "text":     ["The sizable cargo bay is chock full of crates and containers containing all the bits and doodads required for starting whatever colony this ship is meant to start.", "Many robots are shut off and strapped to their stations, locked behind keys and access codes you were never meant to have."],
             "links":    [],
             "linkText": {},
             "flags": [16]
@@ -187,7 +187,7 @@
         },
         "aiexit": {
             "character": "Ship AI",
-            "text": ["Please be safe, this ship, and therefore in extension, I depend on you."],
+            "text": ["Please be safe, this ship, and therefore in extension, I, depend on you."],
             "links": [],
             "linkText": {},
             "flags": []
@@ -261,7 +261,7 @@
             "linkText": {},
             "flags": []
         },
-        "crateexcamine": {
+        "crateexamine": {
             "character": "",
             "text": ["Perhaps a bit out of boredom, you decide to rummage through the crates.", "Oh, this box has an honest to god grandfather clock.", "This one has one of them self-driving fancy flying cars that's a bigger threat to rich people than the people they underpay.", "This box has...,", "eugh...nevermind.", "These \"survival items\" are kinda questionable.", "After searching for a bit, you find no actual equipment that would be necessary to survive on an alien world."],
             "links": [],

@@ -95,6 +95,42 @@
         "playerCryoyes": {
             "text": "Some much needed getting frozen for a job mediocre-ly done.",
             "longtext": "I sure can't wait for the next time I gotta get thawed out."
+        },
+        "shipai": {
+            "text": "The ship's central AI",
+            "longtext": "This one's not sophisticated enough to read minds, the ones at home are, though."
+        },
+        "hstatno": {
+            "text": "",
+            "longtext": "Some lights are red on this screen. Apparently something in hydroponics needs doing."
+        },
+        "hstatyes": {
+            "text": "",
+            "longtext": "Hydroponics seems to be alright."
+        },
+        "cstatno": {
+            "text": "",
+            "longtext": "Huh, something's wrong with the cryo chambers. Couldn't tell you what though."
+        },
+        "cstatyes": {
+            "text": "",
+            "longtext": "Cryo chambers are reporting fine."
+        },
+        "estatno": {
+            "text": "",
+            "longtext": "The engine has some flashing yellow lights. It's not red so it's not major, at least."
+        },
+        "estatyes": {
+            "text": "",
+            "longtext": "No red or yellow lights, this is a good sign, probably."
+        },
+        "astatno": {
+            "text": "",
+            "longtext": "There seems to be a warning on the AI's status. Oh boy."
+        },
+        "astatyes": {
+            "text": "",
+            "longtext": "The AI is reporting no issues in regards to itself. Comforting."
         }
     }
 }
