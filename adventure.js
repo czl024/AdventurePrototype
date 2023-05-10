@@ -172,6 +172,8 @@ class AdventureScene extends Phaser.Scene {
         let texts = node.text.length - 1;
         let currText = 0;
         let links = [];
+        //set flags if set in dialogue
+        node.flags.forEach((i) => {this.setFlag(i)});
         //render the dialogue box
         let textBox = this.add.rectangle(0, textY, this.width, this.height / 3, '0xDCDCDC');
         textBox.setOrigin(0);

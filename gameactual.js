@@ -20,7 +20,8 @@ Secret Ending PreReq Flags
 Secret Ending Flag
 12) cryo chambers sabotaged
 -----------------------------
-Location Flags
+Location Flags, set to true as soon as player enters
+meant to show one-time description of room
 13) cryo
 14) hall
 15) hydro
@@ -69,7 +70,6 @@ class CryoChamber extends AdventureScene{
 
         if(!this.getFlag(13)){
             this.startDialogue("cryo");
-            this.setFlag(13);
         }
     }
 }
@@ -154,7 +154,6 @@ class Hydroponics extends AdventureScene{
 
         if(!this.getFlag(15)){
             this.startDialogue("hydro");
-            this.setFlag(15);
         }
     }
 }
@@ -175,7 +174,6 @@ class CargoBay extends AdventureScene{
 
         if(!this.getFlag(16)){
             this.startDialogue("cargo");
-            this.setFlag(16);
         }
     }
 }
@@ -196,7 +194,6 @@ class LifeSupport extends AdventureScene{
 
         if(!this.getFlag(19)){
             this.startDialogue("life support");
-            this.setFlag(19);
         }
     }
 }
@@ -217,7 +214,6 @@ class EngineRoom extends AdventureScene{
 
         if(!this.getFlag(18)){
             this.startDialogue("engine");
-            this.setFlag(18);
         }
     }
 }
@@ -238,7 +234,6 @@ class Bridge extends AdventureScene{
 
         if(!this.getFlag(17)){
             this.startDialogue("bridge");
-            this.setFlag(17);
         }
     }
 }

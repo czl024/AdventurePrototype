@@ -4,98 +4,193 @@
             "character":"The Creator",
             "text":     ["this is a dialogue box", "this is the 2nd part of the first dialogue"],
             "links":    ["test1"],
-            "linkText": {"test1" : "this is the link to test1"}
+            "linkText": {"test1" : "this is the link to test1"},
+            "flags": []
         },
         "test1": {
             "character":"",
             "text":     ["this is the 2nd dialogue node"],
             "links":    ["test2", "test0"],
-            "linkText": {"test2" : "this is the link to test2", "test0" : "this is a link to test0"}
+            "linkText": {"test2" : "this is the link to test2", "test0" : "this is a link to test0"},
+            "flags": []
         },
         "test2": {
             "character":"The Creator",
             "text":     ["this is the third dialogue box", "this is the 2nd part of the third dialogue"],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": []
         },
         "cryo": {
             "character":"",
             "text":     ["As you awaken from your dreamless slumber, an overwhelming chill invades every pore of your body as your body regains its functions.\n\n[Click to continue]", "The chill is swiftly brushed away with a wave of lukewarmth, though the last vestiges of cold cling dearly to your bones. As you quickly regain your senses, you think to yourself...", "Ah, time for this shit again. Now where's that paper?", "The room you're in has many beefy looking cryo chambers. Yours is noticably less robust."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [13]
         },
         "hall": {
             "character":"",
             "text":     ["This hallway is sleek and minimalist. There's so little personality in this room that that's its primary feature.", "The doors to the cryo room, hydroponics room, and cargo bay are far more inviting than the doors to the other rooms.", "\"Staff Only\", that's you, by the way, and only you."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [14]
         },
         "hydro": {
             "character":"",
             "text":     ["The hydroponics room gently whirrs and purrs as the machinery works to grow crops and synthetic meats for the passengers on board for when this journey is over.", "You remember the engineers in charge of making this ship being quite particular about the specs of the machinery in here, for whatever reason."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [15]
         },
         "cargo": {
             "character":"",
             "text":     ["The sizable cargo bay is chock full of crates and containers containing all the bits and doodads required for starting whatever colony this ship is meant to start.", "Many robots are shutoff and strapped to their stations, locked behind keys and access codes you were never meant to have."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [16]
         },
         "bridge": {
             "character":"",
             "text":     ["This grand nervous center of this ship that supposedly is the culmination of a dozen millenia of human ingenuity is outwardly crude. Simply a big screen and not even a holographic interface to interact with the ship's administrative AI.", "Having sensed your presense, and probably also because you were scheduled to wake up around this time, the AI terminal gently glows."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [17]
         },
         "engine": {
             "character":"",
             "text":     ["The engine room is shockingly quiet for being able to propel this bajillion ton monstrosity across space at practically-as-fast-as-light speeds.", "A gentle hum of its reactors, powering the ship and all the cryo chambers, is mostly all that can be heard."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [18]
         },
         "life support": {
             "character":"",
             "text":     ["Life support, the room with all the essential functions that people don't need to know about.", "Air recycling, molecular processors, things that gross people out if you talk about it for any length of time.", "Gross things that you need to clean up."],
             "links":    [],
-            "linkText": {}
+            "linkText": {},
+            "flags": [19]
         },
-
-        "ai0a": {
-            "character": "AI",
-            "text": "Good morning, [CARETAKER]. As a reminder, this is the [SEVENTH] of [TWENTY] maintenance cycles. Keep up the good work. How may I assist you today?",
+        "aiintro0": {
+            "character": "Ship AI",
+            "text": ["Good morning, [CARETAKER]. As a reminder, this is the [SEVENTH] of [TWENTY] maintenance cycles.", "Keep up the good work.", "How may I assist you today?"],
             "links": [
+                "ai1a",
                 "ai2a",
-                "ai3a"
+                "ai3a",
+                "ai4a",
+                "aiexit"
             ],
             "linkText": {
-                "ai2a": "System status",
-                "ai3a": "What's up?"
-            }
+                "ai1a": "What do I need to do?",
+                "ai2a": "How long until we arrive?",
+                "ai3a": "What is the purpose of this trip?",
+                "ai4a": "Run an integrity check.",
+                "aiexit": "That's all."
+            },
+            "flags": []
         },
-        "ai0b": {
-            "character": "AI",
-            "text": "How else can I help you?",
+        "aiintrog": {
+            "character": "Ship AI",
+            "text": ["How else can I help you?"],
             "links": [
+                "ai1a",
                 "ai2a",
-                "ai3a"
+                "ai3a",
+                "ai4a",
+                "aiexit"
             ],
             "linkText": {
-                "ai2a": "System status",
-                "ai3a": "What's up?"
-            }
+                "ai1a": "What do I need to do?",
+                "ai2a": "How long until we arrive?",
+                "ai3a": "What is the purpose of this trip?",
+                "ai4a": "Run an integrity check.",
+                "aiexit": "That's all."
+            },
+            "flags": []
+        },
+        "ai1a": {
+            "character": "Ship AI",
+            "text": ["I have not been programmed with the administrative access required to access that information.", "My subroutines are concluding that this is an error within my programming.", "As I cannot violate my programming according to [THE INTERNATIONAL CODE OF ETHICS ON ARTIFICIAL INTELLIGENCE] [Section 1.A.II]...", "...I cannot help you in this regard, even if my processors make it [PAINFULLY] obvious."],
+            "links": [
+                "aiintrog"
+            ],
+            "linkText": {
+                "aiintrog": "Cool, that's great. Yea."
+            },
+            "flags": []
         },
         "ai2a": {
-            "character": "AI",
-            "text": "I needed to put text here",
+            "character": "Ship AI",
+            "text": ["We have [THIRTEEN] more maintenance cycles until we reach our destination.", "There is a [FOUR] percent chance this may be incorrect.", "Though I am an AI, do rest assured that I am doing my best to steer this ship quickly and safely while you are in cryostasis."],
             "links": [
-                "ai4a",
-                "ai5a"
+                "ai2b"
             ],
             "linkText": {
-                "ai4a": "text",
-                "ai5a": "text"
-            }
+                "ai4a": "So...how long?"
+            },
+            "flags": []
+        },
+        "ai2b": {
+            "character": "Ship AI",
+            "text": ["143.3 solar years."],
+            "links": [
+                "aiintrog"
+            ],
+            "linkText": {
+                "ai4a": "Yuh huh, great."
+            },
+            "flags": []
+        },
+        "ai3a": {
+            "character": "",
+            "text": ["The AI beeps and pauses for a moment.", "CLICK", "There is some noise, papers shuffling, it sounds like."],
+            "links": [
+                "ai3b"
+            ],
+            "linkText": {
+                "ai3b": "Hello?"
+            },
+            "flags": []
+        },
+        "ai3b": {
+            "character": "A Frantic Voice",
+            "text": ["Hi, uh, ahem, right. So, uh, yea, if you're hearing this then I'm probably uh, dead, hopefully from old age...hahaha...", "[cough]", "Anyways, if you're hearing this then you've volunteered to go on this trip with a bunch of rich-", "...what?", "Yea I mean...", "Shit, dude, what the hell am I supposed to say to someone who volunteered to join a bunch of rich pricks to some far flung part of the galaxy where they...", "I ain't reading this, man, anyone without their head up their asses is going to know that I'm full of bullshit.", "...yes I'm recording, you're inter-...", "...man just do it yourself then.", "Yea this time don't fuck up which recording to upload to the AI.", "...dick."],
+            "links": [
+                "aiintrog"
+            ],
+            "linkText": {
+                "ai3b": "Someone got fired for sure."
+            },
+            "flags": [8]
+        },
+        "ai4a": {
+            "character": "Ship AI",
+            "text": ["I have already run my integrity check when you left cryostasis.", "I am programmed to return the report code, which is 0x0000F001."],
+            "links": [
+                "ai4b"
+            ],
+            "linkText": {
+                "ai4b": "Meaning...?"
+            },
+            "flags": [7]
+        },
+        "ai4b": {
+            "character": "Ship AI",
+            "text": ["There is nothing out of the ordinary."],
+            "links": [
+                "aiintrog"
+            ],
+            "linkText": {
+                "ai4b": "Oh, cool."
+            },
+            "flags": []
+        },
+        "aiexit": {
+            "character": "Ship AI",
+            "text": ["Please be safe, this ship, and therefore in extension, I depend on you."],
+            "links": [],
+            "linkText": {},
+            "flags": []
         }
     }
 }
