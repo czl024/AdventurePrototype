@@ -42,11 +42,34 @@ class CryoChamber extends AdventureScene{
         }
 
         //initial paper thingy
-        if(this.getFlag(0)){ //paper not picked up
+        if(!this.getFlag(0)){ //paper not picked up
             //add the paper object
-            let paper = this.add.text();
-
+            let paper = this.add.rectangle(this.width / 2, this.height / 2, 40, 60, '#efeed3');
+            paper.setAngle(20);
+            paper.setInteractive();
+            paper.on('pointerdown', () => {
+                //dont do anything if dialogue is happening
+                if(!this.dialogueHappening){
+                    paper.destroy();
+                    this.setFlag(0);
+                }
+            })
             //add the ui telling the player to click to pick it up
+        }
+
+        //add door to hall
+        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        hallDoor.setInteractive();
+        hallDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.setFlag(1);
+                this.gotoScene('hall');
+            }
+        });
+
+        if(!this.getFlag(13)){
+            this.startDialogue("cryo");
+            this.setFlag(13);
         }
     }
 }
@@ -57,7 +80,61 @@ class Hallway extends AdventureScene{
     }
 
     onEnter(){
+        let cryoDoor = this.add.rectangle(2 * this.width / 7, this.height / 4, 250, 400, '#101010');
+        cryoDoor.setInteractive();
+        cryoDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('cryo');
+            }
+        });
 
+        let hydroDoor = this.add.rectangle(4 * this.width / 7, this.height / 4, 250, 400, '#101010');
+        hydroDoor.setInteractive();
+        hydroDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('hydro');
+            }
+        });
+
+        let cargoDoor = this.add.rectangle(6 * this.width / 7, this.height / 4, 250, 400, '#101010');
+        cargoDoor.setInteractive();
+        cargoDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('cargo');
+            }
+        });
+
+        let bridgeDoor = this.add.rectangle(2 * this.width / 7, 3 *  this.height / 4, 250, 400, '#101010');
+        bridgeDoor.setInteractive();
+        bridgeDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('bridge');
+            }
+        });
+
+        let engineDoor = this.add.rectangle(4 * this.width / 7, 3 *  this.height / 4, 250, 400, '#101010');
+        engineDoor.setInteractive();
+        engineDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('engine');
+            }
+        });
+
+        let lifeDoor = this.add.rectangle(6 * this.width / 7, 3 *  this.height / 4, 250, 400, '#101010');
+        lifeDoor.setInteractive();
+        lifeDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('lifes');
+            }
+        });
+
+        if(!this.getFlag(14)){
+            console.log(this.getFlag(14));
+            this.setFlag(14);
+            this.startDialogue("hall");
+            
+            console.log(this.getFlag(14));
+        }
     }
 }
 
@@ -67,7 +144,18 @@ class Hydroponics extends AdventureScene{
     }
 
     onEnter(){
+        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        hallDoor.setInteractive();
+        hallDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('hall');
+            }
+        });
 
+        if(!this.getFlag(15)){
+            this.startDialogue("hydro");
+            this.setFlag(15);
+        }
     }
 }
 
@@ -77,7 +165,18 @@ class CargoBay extends AdventureScene{
     }
 
     onEnter(){
+        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        hallDoor.setInteractive();
+        hallDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('hall');
+            }
+        });
 
+        if(!this.getFlag(16)){
+            this.startDialogue("cargo");
+            this.setFlag(16);
+        }
     }
 }
 
@@ -87,7 +186,18 @@ class LifeSupport extends AdventureScene{
     }
 
     onEnter(){
+        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        hallDoor.setInteractive();
+        hallDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('hall');
+            }
+        });
 
+        if(!this.getFlag(19)){
+            this.startDialogue("life support");
+            this.setFlag(19);
+        }
     }
 }
 
@@ -97,7 +207,18 @@ class EngineRoom extends AdventureScene{
     }
 
     onEnter(){
+        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        hallDoor.setInteractive();
+        hallDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('hall');
+            }
+        });
 
+        if(!this.getFlag(18)){
+            this.startDialogue("engine");
+            this.setFlag(18);
+        }
     }
 }
 
@@ -107,7 +228,18 @@ class Bridge extends AdventureScene{
     }
 
     onEnter(){
+        let hallDoor = this.add.rectangle(3 * this.width / 4, this.height / 2, 250, 400, '#101010');
+        hallDoor.setInteractive();
+        hallDoor.on('pointerdown', () =>{
+            if(!this.dialogueHappening){
+                this.gotoScene('hall');
+            }
+        });
 
+        if(!this.getFlag(17)){
+            this.startDialogue("bridge");
+            this.setFlag(17);
+        }
     }
 }
 
@@ -115,7 +247,7 @@ class Intro extends Phaser.Scene{
     constructor() {super('intro');}
 
     create(){
-
+        this.scene.start("cryo");
     }
 }
 

@@ -15,8 +15,8 @@ class AdventureScene extends Phaser.Scene {
     }
 
     create() {
-        this.dialogue = this.cache.json.get("dialogue");
-        console.log(this.dialogue);
+        this.dialogue = this.cache.json.get("dialogue").dialogue;
+        console.log(this.flags);
 
         this.transitionDuration = 1000;
         this.dialogueHappening = false;
@@ -28,40 +28,13 @@ class AdventureScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
-        //side box
-        this.add.rectangle(this.width * .75, 0, this.width * 0.25, this.height).setOrigin(0, 0).setFillStyle(0);
-        //scene name
-        this.add.text(this.width * 0.75 + this.s, this.s)
-            .setText(this.name)
-            .setStyle({ fontSize: `${3 * this.s}px` })
-            .setWordWrapWidth(this.width * 0.25 - 2 * this.s);
-        
-        this.messageBox = this.add.text(this.width * 0.75 + this.s, this.height * 0.33)
-            .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
-            .setWordWrapWidth(this.width * 0.25 - 2 * this.s);
-
-        //the "Inventory" text
+        //the "Inventory" text, to reimplement later
         this.inventoryBanner = this.add.text(this.width * 0.75 + this.s, this.height * 0.66)
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setText("Inventory")
             .setAlpha(0);
-
-            
         this.inventoryTexts = [];
         this.updateInventory();
-
-        //fullscreen button
-        this.add.text(this.width-3*this.s, this.height-3*this.s, "📺")
-            .setStyle({ fontSize: `${2 * this.s}px` })
-            .setInteractive({useHandCursor: true})
-            .on('pointerover', () => this.showMessage('Fullscreen?'))
-            .on('pointerdown', () => {
-                if (this.scale.isFullscreen) {
-                    this.scale.stopFullscreen();
-                } else {
-                    this.scale.startFullscreen();
-                }
-            });
 
         this.onEnter();
 
@@ -189,16 +162,82 @@ class AdventureScene extends Phaser.Scene {
 
     //start a dialogue with a given node, nodes in "dialogue.json"
     startDialogue(dialogueNode){
+        let textX = 0;
+        let textY = 2 * this.height / 3;
+        let textWidth = this.width - 100;
         this.dialogueHappening = true;
-        //load the appropriate node
+
+        //load the appropriate node and information
+        let node = this.dialogue[dialogueNode];
+        let texts = node.text.length - 1;
+        let currText = 0;
+        let links = [];
         //render the dialogue box
+        let textBox = this.add.rectangle(0, textY, this.width, this.height / 3, '0xDCDCDC');
+        textBox.setOrigin(0);
+        textBox.setAlpha(.5);
         //print the name
+        let nameT;
+        let nameBox;
+        if(node.character != ""){
+            nameBox = this.add.rectangle(this.width / 2, textY - 30, 400, 60, '0xDCDCDC');
+            nameBox.setOrigin(.5);
+            nameBox.setAlpha(.75);
+            nameT = this.add.text(this.width / 2, textY - 30, node.character, {
+                fontFamily: 'Helvetica',
+                fontSize: 30,
+                color: "#101010",
+            });
+            nameT.setOrigin(.5);
+        }
+        
         //print the text
+        let text = this.add.text(textX + 50, textY + 50, node.text[currText], {
+            fontFamily: 'Helvetica',
+            fontSize: 45,
+            color: "#f0f0f0",
+            wordWrap: {width: textWidth, useAdvancedWrap: true}
+        });
+        textBox.setInteractive();
         //on click
+        textBox.on('pointerdown', () => {
+            //display the next text entry
+            if(currText < texts){
+                currText++;
+                text.setText(node.text[currText]);
             //if no dialogue after current
+            }else{
+                textBox.removeInteractive();
                 //if there are links
+                if(node.links.length != 0){
+                    
+                    for(let x = 0; x < node.links.length; x++){
+                        links.push(this.add.text(this.width / 2, (x + 1) * (textY / (node.links.length + 1)), node.linkText[node.links[x]], {
+                            fontFamily: 'Georgia',
+                            fontSize: 50,
+                            color: "#f0f0f0",
+                            wordWrap: {width: textWidth, useAdvancedWrap: true}
+                        }));
+                        links[x].setOrigin(.5);
+                        links[x].setInteractive();
+                        links[x].on('pointerdown', () => {
+                            text.destroy();
+                            if(nameT !== undefined) nameT.destroy();
+                            textBox.destroy();
+                            if(nameBox !== undefined) nameBox.destroy();
+                            links.forEach((element) => {element.destroy()});
+                            this.startDialogue(node.links[x]);
+                        })
+                    }
                 //else (no links)
-                    //move/delete the dialogue box
+                }else{
+                    text.destroy();
+                    if(nameT !== undefined) nameT.destroy();
+                    textBox.destroy();
+                    if(nameBox !== undefined) nameBox.destroy();
                     this.dialogueHappening = false;
+                }
+            }
+        })
     }
 }
