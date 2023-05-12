@@ -23,7 +23,7 @@
         },
         "cryo": {
             "character":"",
-            "text":     ["As you awaken from your dreamless slumber, an overwhelming chill invades every pore of your body as your body regains its functions.\n\n[Click to continue]", "The chill is swiftly brushed away with a wave of lukewarmth, though the last vestiges of cold cling dearly to your bones. As you quickly regain your senses, you think to yourself...", "Ah, time for this shit again. Now where's that paper?", "The room you're in has many beefy looking cryo chambers. Yours is noticably less robust."],
+            "text":     ["As you awaken from your dreamless slumber, an overwhelming chill invades every pore of your body as your body regains its functions.\n\n[Click to continue]", "The chill is swiftly brushed away with a wave of lukewarmth, though the last vestiges of cold cling dearly to your bones. As you quickly regain your senses, you think to yourself...", "Ah, time for this shit again. Now where's that paper?", "The room you're in has many beefy looking cryo chambers. Yours is noticably less robust.", "[Click on objects to interact after you are finished with this dialogue.]"],
             "links":    [],
             "linkText": {},
             "flags": [13]

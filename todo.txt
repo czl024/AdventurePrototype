@@ -1,0 +1,17 @@
+1) extend gameobject and modularify the following by :
+    i)  adding spritesheet calls for
+    ii) adding flag triggers for
+        a)  on('pointerover')
+            timer should be summation of 160/(stringLength ^ 1/4)
+            code is the following :
+                let time = 0;
+                for(let x = 1; x <= stringLength; x++) time += 160 / (stringLength ** (1/4));
+        b)  on('pointerout')
+        c)  on('pointerdown')
+            should call startDialogue with a given key
+    
+2) add modularity to descText, make the extended game object interact with it on both pointerover and pointerout
+3) make an inventory panel
+4) possibly enumerate flags?
+5) add transition function (combine tween and sound)
+6) make ui its own thing

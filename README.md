@@ -12,7 +12,7 @@ Experience requirements:
 - **2+ interactive objects in most scenes**     : well, every scene has a door and at least one other thing with hoverover text and interaction if you click it
 - **Many objects have `pointerover` messages**  : the only objects without pointerover messages is the dialogue box and the background
 - **Many objects have `pointerdown` effects**   : doors, story objects
-- **Some objects are themselves animated**      : unsatisfied (describe two examples)
+- **Some objects are themselves animated**      : every door (theres 3 kinds)
 
 Asset sources:
 - all visual assets hastily made on GIMP

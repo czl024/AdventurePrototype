@@ -39,6 +39,7 @@ class CryoChamber extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width/2, this.height/2, 'bg2');
+        this.addPaper();
 
         //initialize on game startup
         if(this.flags.length == 0){
@@ -52,7 +53,8 @@ class CryoChamber extends AdventureScene{
         //paper object
         if(!this.getFlag(0)){ //paper not picked up
             //add the paper object
-            let paper = this.add.rectangle(this.width / 2 + 200, this.height / 2 + 100, 40, 60, '#efeed3');
+            let paper = this.add.image(this.width / 2 + 200, this.height / 2 + 100, 'paper');
+            paper.setScale(1/10);
             paper.setAngle(20);
             paper.setInteractive();
             //on mouseover
@@ -76,8 +78,18 @@ class CryoChamber extends AdventureScene{
                 if(!this.dialogueHappening){
                     paper.destroy();
                     this.setFlag(0);
+                    this.addPaper();
                     this.descText.setText("");
                     this.overactive = false;
+                    let infotext = this.add.text(125, 60, "<= Hover over to read at any time.", {
+                        fontSize : 30
+                    });
+                    this.add.tween({
+                        targets: infotext,
+                        alpha: {from: 1, to: 0, ease: 'quint.in'},
+                        duration: 3000,
+                        onComplete: () => {infotext.destroy()}
+                    })
                 }
             });
             //add the ui telling the player to click to pick it up
@@ -209,6 +221,7 @@ class Hallway extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width / 2, this.height / 2, 'bg1');
+        this.addPaper();
         
         //cryo door
         let cryoDoor = this.add.sprite(this.width / 9, this.height / 2 + 85);
@@ -403,6 +416,7 @@ class Hydroponics extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width / 2, this.height / 2, 'bg1');
+        this.addPaper();
 
         //hall door
         let hallDoor = this.add.sprite(this.width / 9, this.height / 2 + 85);
@@ -523,6 +537,7 @@ class CargoBay extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width / 2, this.height / 2, 'bg1');
+        this.addPaper();
 
         //hall door
         let hallDoor = this.add.sprite(this.width / 9, this.height / 2 + 85);
@@ -690,6 +705,7 @@ class LifeSupport extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width / 2, this.height / 2, 'bg2');
+        this.addPaper();
 
         //hall door
         let hallDoor = this.add.sprite(2 * this.width / 3 - 100, this.height / 2 + 88);
@@ -807,6 +823,7 @@ class EngineRoom extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width / 2, this.height / 2, 'bg1');
+        this.addPaper();
 
         //hall door
         let hallDoor = this.add.sprite(2 * this.width / 3 - 100, this.height / 2 + 25);
@@ -915,6 +932,7 @@ class Bridge extends AdventureScene{
 
     onEnter(){
         this.add.image(this.width / 2, this.height / 2, 'bg1');
+        this.addPaper();
 
         //hall door
         let hallDoor = this.add.sprite(this.width / 9, this.height / 2 + 85);
@@ -1093,6 +1111,7 @@ class Intro extends Phaser.Scene{
         this.load.spritesheet('door1', "assets/door1ss-278x550.png", {frameWidth : 274, frameHeight : 550});
         this.load.spritesheet('door2', "assets/door2ss-274x520.png", {frameWidth : 274, frameHeight : 520});
         this.load.spritesheet('door3', "assets/door3ss-274x381.png", {frameWidth : 229, frameHeight : 381});
+        this.load.image('paper', "assets/paper.png");
     }
 
     create(){
@@ -1138,7 +1157,7 @@ class Intro extends Phaser.Scene{
             repeat: -1
         });
 
-        this.scene.start("lifes");
+        this.scene.start("cryo");
     }
 }
 

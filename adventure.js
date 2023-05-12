@@ -1,7 +1,7 @@
 class AdventureScene extends Phaser.Scene {
     preload(){
-        this.load.json('dialogue', './dialogue.json');
-        this.load.json('mouseover', './mouseover.json');
+        this.load.json('dialogue', 'dialogue.json');
+        this.load.json('mouseover', 'mouseover.json');
     }
 
     init(data) {
@@ -16,6 +16,8 @@ class AdventureScene extends Phaser.Scene {
     }
 
     create() {
+        this.paperUI;
+        this.paper;
         this.dialogue = this.cache.json.get("dialogue").dialogue;
         this.mouseover = this.cache.json.get("mouseover").mouseover;
         console.log(this.flags);
@@ -31,10 +33,11 @@ class AdventureScene extends Phaser.Scene {
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
         //the "Inventory" text, to reimplement later or never
-        this.inventoryBanner = this.add.text(this.width * 0.75 + this.s, this.height * 0.66)
+        this.inventoryBanner = this.add.text(this.width / 16, this.height / 6)
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setText("Inventory")
-            .setAlpha(0);
+            .setAlpha(0)
+            .setDepth(5);
         this.inventoryTexts = [];
         this.updateInventory();
 
@@ -80,12 +83,13 @@ class AdventureScene extends Phaser.Scene {
         //sets a new empty array
         this.inventoryTexts = [];
         //position of text
-        let h = this.height * 0.66 + 3 * this.s;
+        let h = this.height / 6 + 3 * this.s;
         //display each index of inventory
         this.inventory.forEach((e, i) => {
-            let text = this.add.text(this.width * 0.75 + 2 * this.s, h, e)
+            let text = this.add.text(this.width / 16 + 2 * this.s, h, e)
                 .setStyle({ fontSize: `${1.5 * this.s}px` })
-                .setWordWrapWidth(this.width * 0.75 + 4 * this.s);
+                .setWordWrapWidth(this.width * 0.75 + 4 * this.s)
+                .setDepth(4);
             h += text.height + this.s;
             this.inventoryTexts.push(text);
         });
@@ -247,5 +251,26 @@ class AdventureScene extends Phaser.Scene {
                 }
             }
         })
+    }
+
+
+
+    addPaper(){
+        if(this.getFlag(0)){
+            this.paperUI = this.add.image(75, 75, 'paper');
+            this.paperUI.setInteractive();
+            //this.paperUI = this.add.rectangle(50, 50, 40, 80, '#FFF');
+            this.paperUI.setScale(1/10);
+            this.paperUI.setDepth(3);
+
+            this.paperUI.on('pointerover', () => {
+                this.paper = this.add.image(this.width/2, this.height / 2, 'paper');
+                console.log("TAKYON");
+                this.paperUI.setDepth(3);
+            });
+            this.paperUI.on('pointerout', () => {
+                this.paper.destroy();
+            });
+        }
     }
 }
