@@ -181,9 +181,9 @@ class AdventureScene extends Phaser.Scene {
         //set flags if set in dialogue
         node.flags.forEach((i) => {this.setFlag(i)});
         //render the dialogue box
-        let textBox = this.add.rectangle(0, textY, this.width, this.height / 3, '0xDCDCDC');
+        let textBox = this.add.rectangle(0, textY, this.width, this.height / 3, '0x000000');
         textBox.setOrigin(0);
-        textBox.setAlpha(.5);
+        textBox.setAlpha(.75);
         //print the name
         let nameT;
         let nameBox;

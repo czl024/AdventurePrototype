@@ -30,7 +30,7 @@
         },
         "hall": {
             "character":"",
-            "text":     ["This hallway is sleek and minimalist. There's so little personality in this room that that's its primary feature.", "The doors to the cryo room, hydroponics room, and cargo bay are far more inviting than the doors to the other rooms.", "\"Staff Only\", that's you, by the way, and only you."],
+            "text":     ["This hallway is sleek and minimalist. There's so little personality in this room that that's its primary feature."],
             "links":    [],
             "linkText": {},
             "flags": [14]
@@ -51,7 +51,7 @@
         },
         "bridge": {
             "character":"",
-            "text":     ["This grand nervous center of this ship that supposedly is the culmination of a dozen millenia of human ingenuity is outwardly crude. Simply a big screen and not even a holographic interface to interact with the ship's administrative AI.", "Having sensed your presense, and probably also because you were scheduled to wake up around this time, the AI terminal gently glows."],
+            "text":     ["This grand nervous center of this ship that supposedly is the culmination of a dozen millenia of human ingenuity is outwardly crude. Simply a few screens and not even a holographic interface to interact with the ship's administrative AI.", "Having sensed your presense, and probably also because you were scheduled to wake up around this time, the AI terminal gently glows."],
             "links":    [],
             "linkText": {},
             "flags": [17]
@@ -65,7 +65,7 @@
         },
         "life support": {
             "character":"",
-            "text":     ["Life support, the room with all the essential functions that people don't need to know about.", "Air recycling, molecular processors, things that gross people out if you talk about it for any length of time.", "Gross things that you need to clean up."],
+            "text":     ["Life support, the room with all the essential functions that people don't need to know about.", "Air recycling, molecular processors, things that gross people out if you talk about it for any length of time.", "Gross things you thankfully don't really need to touch."],
             "links":    [],
             "linkText": {},
             "flags": [19]
