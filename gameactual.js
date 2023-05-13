@@ -48,8 +48,6 @@ class CryoChamber extends AdventureScene{
             //show the cryo intro text
         }
 
-
-
         //paper object
         if(!this.getFlag(0)){ //paper not picked up
             //add the paper object
@@ -84,6 +82,26 @@ class CryoChamber extends AdventureScene{
                     let infotext = this.add.text(125, 60, "<= Hover over to read at any time.", {
                         fontSize : 30
                     });
+                    let playerCryo = this.add.text(this.width / 2, 1 * this.height / 10, "Return to cryostasis", {
+                        fontSize: 40,
+                    });
+                    playerCryo.setOrigin(.5);
+                    playerCryo.setInteractive();
+                    playerCryo.setDepth(10);
+                    playerCryo.on('pointerover', () => {
+                        if(!this.dialogueHappening){
+                            this.overactive = true;
+                            this.descText.setText(this.mouseover.playerCryono.text);
+                            this.time.delayedCall(this.mouseover.playerCryono.text.length * 100, () => {
+                                if(this.overactive) this.descText.setText(this.mouseover.playerCryono.longtext);
+                            });
+                            
+                        }
+                    });
+                    playerCryo.on('pointerout', () => {
+                        this.overactive = false;
+                        this.descText.setText("");
+                    });
                     this.add.tween({
                         targets: infotext,
                         alpha: {from: 1, to: 0, ease: 'quint.in'},
@@ -94,6 +112,47 @@ class CryoChamber extends AdventureScene{
             });
             //add the ui telling the player to click to pick it up
             //future self to past self : aint no time for that lmao
+        }else{
+            let check = true;
+            for(let x = 2; x <= 7; x++){ if(!this.getFlag(x)) check = false; }
+            let playerCryo = this.add.text(this.width / 2, 1 * this.height / 10, "Return to cryostasis", {
+                fontSize: 40,
+            });
+            playerCryo.setOrigin(.5);
+            playerCryo.setInteractive();
+            playerCryo.setDepth(10);
+            if(check){
+                playerCryo.on('pointerdown', () =>{
+                    if(!this.dialogueHappening && check){
+                        this.descText.setText("");
+                        this.overactive = false;
+                        let checkSpecial = this.getFlag(12);
+                        if(checkSpecial) this.scene.start('outro2');
+                        else this.scene.start('outro1');
+                    }
+                });
+            }
+            playerCryo.on('pointerover', () => {
+                if(!this.dialogueHappening){
+                    this.overactive = true;
+                    if(check){
+                        this.descText.setText(this.mouseover.playerCryoyes.text);
+                        this.time.delayedCall(this.mouseover.playerCryoyes.text.length * 100, () => {
+                        if(this.overactive) this.descText.setText(this.mouseover.playerCryoyes.longtext);
+                    });
+                    }else{
+                        this.descText.setText(this.mouseover.playerCryono.text);
+                        this.time.delayedCall(this.mouseover.playerCryono.text.length * 100, () => {
+                        if(this.overactive) this.descText.setText(this.mouseover.playerCryono.longtext);
+                    });
+                    }
+                }
+            });
+            playerCryo.on('pointerout', () => {
+                this.overactive = false;
+                this.descText.setText("");
+            });
+        
         }
 
 
@@ -125,51 +184,6 @@ class CryoChamber extends AdventureScene{
             this.overactive = false;
             this.descText.setText("");
         });
-
-
-
-        //add player's cryo chamber, the exit point of this game
-        //do the checks to determine if the player can even leave
-        let check = true;
-        for(let x = 2; x <= 7; x++){ if(!this.getFlag(x)) check = false; }
-        if(check){
-            let playerCryo = this.add.text(this.width / 2, 1 * this.height / 6, "Return to cryostasis", {
-                fontSize: 40,
-            });
-            playerCryo.setOrigin(.5);
-            playerCryo.setInteractive();
-            playerCryo.setDepth(10);
-            playerCryo.on('pointerdown', () =>{
-                if(!this.dialogueHappening && check){
-                    this.descText.setText("");
-                    this.overactive = false;
-                    let checkSpecial = true;
-                    for(let x = 8; x <= 11; x++){ if(!this.getFlag(x)) checkSpecial = false; }
-                    if(checkSpecial) this.scene.start('outro2');
-                    else this.scene.start('outro1');
-                }
-            });
-            playerCryo.on('pointerover', () => {
-                if(!this.dialogueHappening){
-                    this.overactive = true;
-                    if(check){
-                        this.descText.setText(this.mouseover.playerCryoyes.text);
-                        this.time.delayedCall(this.mouseover.playerCryoyes.text.length * 100, () => {
-                        if(this.overactive) this.descText.setText(this.mouseover.playerCryoyes.longtext);
-                    });
-                    }else{
-                        this.descText.setText(this.mouseover.playerCryono.text);
-                        this.time.delayedCall(this.mouseover.playerCryono.text.length * 100, () => {
-                        if(this.overactive) this.descText.setText(this.mouseover.playerCryono.longtext);
-                    });
-                    }
-                }
-            });
-            playerCryo.on('pointerout', () => {
-                this.overactive = false;
-                this.descText.setText("");
-            });
-        }
 
 
 
@@ -1115,41 +1129,39 @@ class Intro extends Phaser.Scene{
     }
 
     create(){
+        this.width = this.game.config.width;
+        this.height = this.game.config.height;
+        //create door animations
         this.anims.create({
             key: 'door1close',
             frames: this.anims.generateFrameNumbers('door1', {frames: [0]}),
             frameRate: 1,
             repeat: -1
         });
-
         this.anims.create({
             key: 'door1open',
             frames: this.anims.generateFrameNumbers('door1', {frames: [1]}),
             frameRate: 1,
             repeat: -1
         });
-
         this.anims.create({
             key: 'door2close',
             frames: this.anims.generateFrameNumbers('door2', {frames: [0]}),
             frameRate: 1,
             repeat: -1
         });
-
         this.anims.create({
             key: 'door2open',
             frames: this.anims.generateFrameNumbers('door2', {frames: [1]}),
             frameRate: 1,
             repeat: -1
         });
-
         this.anims.create({
             key: 'door3close',
             frames: this.anims.generateFrameNumbers('door3', {frames: [0]}),
             frameRate: 1,
             repeat: -1
         });
-
         this.anims.create({
             key: 'door3open',
             frames: this.anims.generateFrameNumbers('door3', {frames: [1]}),
@@ -1157,7 +1169,76 @@ class Intro extends Phaser.Scene{
             repeat: -1
         });
 
-        this.scene.start("cryo");
+        let bg = this.add.rectangle(0, 0, this.width, this.height, 0x303030);
+        bg.setOrigin(0);
+        bg.setInteractive();
+        let fade = this.add.rectangle(0, 0, this.width, this.height, 0xcccccc);
+        fade.setOrigin(0);
+        fade.setAlpha(0);
+
+        let texts = [];
+        texts.push(this.add.text(this.width / 2, 200, "You are a caretaker of a colony ship bound for some far corner of the galaxy.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 400, "Your cryo chamber periodically releases you to perform essential maintenance on the ship.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 600, "Today is no different.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 800, "Click to begin.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+
+        texts.forEach((x) => {
+            x.setDepth(1);
+            x.setOrigin(.5);
+            x.setAlpha(0);
+        })
+
+        this.add.tween({
+            targets: texts[0],
+            alpha: {from: 0, to: 1, ease: 'linear'},
+            duration: 2000,
+            onComplete: () => {
+                this.add.tween({
+                    targets: texts[1],
+                    alpha: {from: 0, to: 1, ease: 'linear'},
+                    duration: 2000,
+                    onComplete: () => {
+                        this.add.tween({
+                            targets: texts[2],
+                            alpha: {from: 0, to: 1, ease: 'linear'},
+                            duration: 2000,
+                            onComplete: () => {
+                                this.add.tween({
+                                    targets: texts[3],
+                                    alpha: {from: 0, to: 1, ease: 'linear'},
+                                    duration: 2000,
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+
+        bg.on('pointerdown', () => {
+            this.add.tween({
+                targets: fade,
+                alpha: {from: 0, to: 1, ease: 'linear'},
+                duration: 3000,
+                onComplete: () => { this.scene.start("cryo"); }
+            })
+        })
     }
 }
 
@@ -1165,7 +1246,80 @@ class OutroNormal extends Phaser.Scene{
     constructor() {super('outro1');}
 
     create(){
-        
+        this.width = this.game.config.width;
+        this.height = this.game.config.height;
+
+        let bg = this.add.rectangle(0, 0, this.width, this.height, 0x303030);
+        bg.setOrigin(0);
+        bg.setInteractive();
+        let fade = this.add.rectangle(0, 0, this.width, this.height, 0x101010);
+        fade.setOrigin(0);
+        fade.setAlpha(0);
+        fade.setDepth(2);
+
+        let texts = [];
+        texts.push(this.add.text(this.width / 2, 200, "The heavy metallic doors of your cryo chamber hum and clash to a close in front of you.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 400, "You quickly lose sense of time, but you lose the abillity to discern consciousness from nothingness as you lose control of your body.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 600, "Tomorrow will be no different", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 800, "Click to restart.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+
+        texts.forEach((x) => {
+            x.setDepth(1);
+            x.setOrigin(.5);
+            x.setAlpha(0);
+        })
+
+        this.add.tween({
+            targets: texts[0],
+            alpha: {from: 0, to: 1, ease: 'linear'},
+            duration: 2000,
+            onComplete: () => {
+                this.add.tween({
+                    targets: texts[1],
+                    alpha: {from: 0, to: 1, ease: 'linear'},
+                    duration: 2000,
+                    onComplete: () => {
+                        this.add.tween({
+                            targets: texts[2],
+                            alpha: {from: 0, to: 1, ease: 'linear'},
+                            duration: 2000,
+                            onComplete: () => {
+                                this.add.tween({
+                                    targets: texts[3],
+                                    alpha: {from: 0, to: 1, ease: 'linear'},
+                                    duration: 2000,
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+
+        bg.on('pointerdown', () => {
+            this.add.tween({
+                targets: fade,
+                alpha: {from: 0, to: 1, ease: 'linear'},
+                duration: 1000,
+                onComplete: () => { this.scene.start('intro'); }
+            })
+        })
     }
 }
 
@@ -1173,7 +1327,155 @@ class OutroSpecial extends Phaser.Scene{
     constructor() {super('outro2');}
 
     create(){
-        
+        this.width = this.game.config.width;
+        this.height = this.game.config.height;
+
+        let bg = this.add.rectangle(0, 0, this.width, this.height, 0x303030);
+        bg.setOrigin(0);
+        bg.setInteractive();
+        let fade = this.add.rectangle(0, 0, this.width, this.height, 0x101010);
+        fade.setOrigin(0);
+        fade.setAlpha(0);
+        fade.setDepth(2);
+
+        let texts = [];
+        texts.push(this.add.text(this.width / 2, 100, "The heavy metallic doors of your cryo chamber hum and clash to a close in front of you.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 225, "You cannot stop smirking.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 350, "As your functions fade, you hear banging on your chamber door.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 475, "\"WHAT HAVE YOU DONE, YOU FUCKING JANITOR!?\"", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 4, 600, "[BANG]", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 600, "[BANG]", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(3 * this.width / 4, 600, "[BANG]", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 725, "Despite all this,", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 850, "tomorrow will be no different.", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+        texts.push(this.add.text(this.width / 2, 975, "Click to restart", {
+            fontSize: 50,
+            align: 'center',
+            wordWrap: {width: this.width - 100, useAdvancedWrap: true}
+        }))
+
+        texts.forEach((x) => {
+            x.setDepth(1);
+            x.setOrigin(.5);
+            x.setAlpha(0);
+        })
+
+        this.add.tween({
+            targets: texts[0],
+            alpha: {from: 0, to: 1, ease: 'linear'},
+            duration: 2000,
+            onComplete: () => {
+                this.add.tween({
+                    targets: texts[1],
+                    alpha: {from: 0, to: 1, ease: 'linear'},
+                    duration: 2000,
+                    onComplete: () => {
+                        this.add.tween({
+                            targets: texts[2],
+                            alpha: {from: 0, to: 1, ease: 'linear'},
+                            duration: 2000,
+                            onComplete: () => {
+                                this.add.tween({
+                                    targets: texts[3],
+                                    alpha: {from: 0, to: 1, ease: 'quint.out'},
+                                    duration: 2000,
+                                    onComplete: () => {
+                                        this.add.tween({
+                                            targets: texts[4],
+                                            alpha: {from: 0, to: 1, ease: 'quint.out'},
+                                            duration: 2000,
+                                            onComplete: () => {
+                                                this.add.tween({
+                                                    targets: texts[5],
+                                                    alpha: {from: 0, to: 1, ease: 'quint.out'},
+                                                    duration: 500,
+                                                    onComplete: () => {
+                                                        this.add.tween({
+                                                            targets: texts[6],
+                                                            alpha: {from: 0, to: 1, ease: 'quint.out'},
+                                                            duration: 500,
+                                                            onComplete: () => {
+                                                                this.add.tween({
+                                                                    targets: texts[7],
+                                                                    alpha: {from: 0, to: 1, ease: 'linear'},
+                                                                    duration: 2000,
+                                                                    onComplete: () => {
+                                                                        this.add.tween({
+                                                                            targets: texts[8],
+                                                                            alpha: {from: 0, to: 1, ease: 'linear'},
+                                                                            duration: 2000,
+                                                                            onComplete: () => {
+                                                                                this.add.tween({
+                                                                                    targets: texts[9],
+                                                                                    alpha: {from: 0, to: 1, ease: 'linear'},
+                                                                                    duration: 2000,
+                                                                                    onComplete: () => {
+                                                                                        
+                                                                                    }
+                                                                                })
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                })
+                                                            }
+                                                        })
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+
+        bg.on('pointerdown', () => {
+            this.add.tween({
+                targets: fade,
+                alpha: {from: 0, to: 1, ease: 'linear'},
+                duration: 1000,
+                onComplete: () => { this.scene.start('intro'); }
+            })
+        })
     }
 }
 
